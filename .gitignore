@@ -1,0 +1,8 @@
+# FreeLinX/iso - generated artifacts. Never commit these.
+#
+# The initramfs is the whole system compressed: ~98 MB for base and ~22 MB for
+# the rescue profile.  build-base.sh writes them here and the images embed them,
+# so a copy in git is a second copy of the release that goes stale the moment the
+# rootfs changes.
+
+/initramfs*.img.gz

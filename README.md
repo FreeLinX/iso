@@ -2,6 +2,24 @@
 
 Tooling repository for the FreeLinX bootable ISO image.
 
+## The initramfs files checked in here are stale
+
+`initramfs.img.gz` and `initramfs-new.img.gz` are build outputs from 30
+September that predate `../src/scripts/initramfs.sh`, which builds both the
+normal and the rescue profile from the rootfs in `../src/rootfs`. They are
+still what `build-iso.sh` uses when it is given no `-i`, and the `normal` one
+is not a FreeLinX system: its `/init` prints
+
+```
+FreeLinX: no init supervisor installed; starting rescue shell.
+```
+
+which appears nowhere in the source tree, has no `/var/service` and no
+`/sbin/runsvdir`. `../base/build-base.sh` no longer reads either file - it
+builds each profile it needs - so the base images are unaffected. Run
+`../base/build-base.sh both` for a base image; pass `-i` to `build-iso.sh`
+for anything else.
+
 ## Usage
 
 `build-iso.sh` assembles a bootable hybrid ISO (legacy BIOS + UEFI) using

@@ -6,3 +6,5 @@
 # rootfs changes.
 
 /initramfs*.img.gz
+
+*.iso
